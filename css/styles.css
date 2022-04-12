@@ -32,7 +32,7 @@ header{
   padding: 16px 15px;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 
@@ -43,7 +43,7 @@ header i.bx-left-arrow-alt{
 }
 
 header i.bxs-sun {
-  font-size: 30px;
+  font-size: 40px;
   color: #F3BC38;
 }
 
@@ -54,8 +54,11 @@ header i.bxs-sun {
 
 /* Input Sectionn */
 .input-section {
-  display: none;
   margin: 20px 25px 30px;
+}
+
+.container.active .input-section {
+  display: none;
 }
 
 .input-section .info-text{
@@ -129,29 +132,39 @@ header i.bxs-sun {
 .input-section button {
   color: #fff;
   background: #43AFFC;
-  cursor: poinnter;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.input-section button:hover {
+  color: #fff;
+  background: #58668B;
 }
 
 
 /* ====== WEATHER CARD ========= */
 .card {
   margin: 30px 0;
-  width: 450px;
+  width: 400px;
   background: #fff;
   border-radius: 7px;
   box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
 }
 
 .card .weather-section{
-  display: flex;
+  display: none;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
+.container.active .weather-section {
+  display: flex;
+}
+
 .card img.time {
   display: block;
-  margin: 0 auto;
   width: 100%;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
@@ -159,7 +172,7 @@ header i.bxs-sun {
 
 .card .icon {
   position: relative;
-  top: -50px;
+  top: -60px;
   border-radius: 50%;
   width: 120px;
   margin-bottom: -50px;
@@ -250,4 +263,34 @@ header i.bxs-sun {
 .details p {
   font-size: 14px;
   margin-top: -6px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+
+  .card {
+    width: 350px;
+  }
+
+  .weather-section .temp{
+    font-weight: 400;
+  }
+
+  .icon img{
+    max-width: 90px;
+  }
+
+  .details .temp,
+  .humidity span {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: -3px;
+  }
+
+  .icon img{
+    max-width: 110px;
+  }
+
 }
