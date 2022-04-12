@@ -131,14 +131,14 @@ header i.bxs-sun {
 
 .input-section button {
   color: #fff;
-  background: #43AFFC;
+  background-color: #58668B;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .input-section button:hover {
   color: #fff;
-  background: #58668B;
+  background-color: #43AFFC;
 }
 
 
