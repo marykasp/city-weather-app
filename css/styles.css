@@ -20,7 +20,7 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 400px;
+  width: 800px;
 }
 
 /* Header w/ icons */
@@ -102,7 +102,7 @@ header i.bxs-sun {
 
 .input-section input:focus,
 .input-section input:valid{
-  border: 2px solid #43AFFC;
+  border: 2px solid #F3BC38;
 }
 
 .input-section input::placeholder{
@@ -138,14 +138,14 @@ header i.bxs-sun {
 
 .input-section button:hover {
   color: #fff;
-  background-color: #43AFFC;
+  background-color: #F3BC38;
 }
 
 
 /* ====== WEATHER CARD ========= */
 .card {
   margin: 30px 0;
-  width: 400px;
+  width: 310px;
   background: #fff;
   border-radius: 7px;
   box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
@@ -215,7 +215,7 @@ header i.bxs-sun {
 .location i {
   font-size: 24px;
   margin-right: 5px;
-  color: #43AFFC;
+  color: #F3BC38;
 }
 
 .weather-section .bottom-details {
@@ -240,7 +240,7 @@ header i.bxs-sun {
 
 .column i {
   font-size: 40px;
-  color: #43AFFC;
+  color: #58668B;
 }
 
 .column.humidity {
@@ -267,7 +267,23 @@ header i.bxs-sun {
 
 @media only screen and (max-width: 600px) {
   body {
-    background-color: lightblue;
+    background-color: #58668B;
+  }
+  header {
+    color: #fff;
+  }
+  header i.bx-left-arrow-alt {
+    color: #fff;
+  }
+
+  .input-section button {
+    background-color: #F3BC38;
+    color: #333;
+    margin-top: 30px;
+  }
+
+  .input-section button:hover {
+    background-color: #0c5460;
   }
 
   .card {
