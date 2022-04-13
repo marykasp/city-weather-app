@@ -176,11 +176,11 @@ header i.bxs-sun {
   border-radius: 50%;
   width: 120px;
   margin-bottom: -50px;
-  background-color: #F3F5FB;
+  background-color: #fff;
 }
 
 .icon img{
-  max-width: 100px;
+  max-width: 130px;
 }
 
 .weather-section .temp{

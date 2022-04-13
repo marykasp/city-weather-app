@@ -11,6 +11,8 @@ const humidInfo = document.querySelector(".humidity span");
 const feelsLike = document.querySelector(".temp .numb-2");
 const weather = document.querySelector(".weather");
 const locationInfo = document.querySelector(".location span");
+const weatherIcon = document.querySelector(".weather-section .icon img");
+const dayNight = document.querySelector(".time")
 
 // ************** EVENT LISTENERS **************
 inputField.addEventListener("keyup", function(e) {
@@ -48,27 +50,41 @@ const onSuccess = function(position) {
     .then(data => weatherDetails(data))
 }
 
+// Get Weather details from object / update UI
 const weatherDetails = function(data) {
   infoTxt.classList.replace("pending", "error");
   if(data.cod === "404") {
     infoTxt.innerText = `${inputField.value} is not a valid city name`;
     inputField.value = ""
+  } else {
+    // active the container class
+    container.classList.add("active");
+
+    // get info from data object
+    let city = data.name;
+    let country = data.sys.country;
+    // get description and icon string id
+    const { description, icon } = data.weather[0] // array of objects
+    // get temperature info
+    const {feels_like, humidity, temp } = data.main; // object
+
+    // change weather icon - use from API icons
+    weatherIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
+
+    // change card day/night image
+    if(icon[-1] == 'd') {
+      dayNight.src = "../img/day.svg";
+    } else {
+      dayNight.src = "../img/night.svg";
+    }
+    // change inner text of elements on card
+    temperature.innerText = Math.floor(temp);
+    humidInfo.innerText = `${humidity}%`;
+    feelsLike.innerText = Math.floor(feels_like);
+    weather.innerText = description;
+    locationInfo.innerText = `${city} ${country}`;
   }
 
-  let city = data.name;
-  let country = data.sys.country;
-
-  const { description, id } = data.weather[0] // array of objects
-  const {feels_like, humidity, temp } = data.main;
-
-  // active the container class
-  container.classList.add("active");
-  // change inner text of elements on card
-  temperature.innerText = Math.floor(temp);
-  humidInfo.innerText = `${humidity}%`;
-  feelsLike.innerText = Math.floor(feels_like);
-  weather.innerText = description;
-  locationInfo.innerText = `${city} ${country}`
 }
 
 // asynchronous function that fetches data
