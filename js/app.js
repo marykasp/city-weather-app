@@ -4,6 +4,7 @@ const inputPart = document.querySelector(".input-section");
 const infoTxt = document.querySelector(".info-text");
 const inputField = document.querySelector("input");
 const locationBtn = document.querySelector("button");
+const arrowBack = document.querySelector("header .bx-left-arrow-alt")
 
 // weather detail information selectors
 const temperature = document.querySelector(".temp .numb");
@@ -33,6 +34,12 @@ locationBtn.addEventListener("click", function() {
   }
 })
 
+arrowBack.addEventListener("click", function() {
+  container.classList.remove("active");
+  infoTxt.innerText = 'Please enter a city location'
+  infoTxt.classList.remove("pending", "error")
+})
+
 // ************** FUNCTIONS **************
 const onError = function(error) {
   infoTxt.innerText = error.message;
@@ -57,6 +64,7 @@ const weatherDetails = function(data) {
     infoTxt.innerText = `${inputField.value} is not a valid city name`;
     inputField.value = ""
   } else {
+    inputField.value = ""
     // active the container class
     container.classList.add("active");
 
@@ -72,9 +80,9 @@ const weatherDetails = function(data) {
     weatherIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
     // change card day/night image
-    if(icon[-1] == 'd') {
+    if(icon.includes("d")) {
       dayNight.src = "../img/day.svg";
-    } else {
+    } else if(icon.includes("n")) {
       dayNight.src = "../img/night.svg";
     }
     // change inner text of elements on card
