@@ -3,12 +3,14 @@ const container = document.querySelector(".container");
 const inputPart = document.querySelector(".input-section");
 const infoTxt = document.querySelector(".info-text");
 const inputField = document.querySelector("input");
+const locationBtn = document.querySelector("button");
+
 // weather detail information selectors
 const temperature = document.querySelector(".temp .numb");
 const humidInfo = document.querySelector(".humidity span");
 const feelsLike = document.querySelector(".temp .numb-2");
 const weather = document.querySelector(".weather");
-const locationInfo = document.querySelector(".location span")
+const locationInfo = document.querySelector(".location span");
 
 // ************** EVENT LISTENERS **************
 inputField.addEventListener("keyup", function(e) {
@@ -17,9 +19,35 @@ inputField.addEventListener("keyup", function(e) {
     // pass input value to get data from api
     requestAPI(inputField.value);
   }
+});
+
+locationBtn.addEventListener("click", function() {
+  // check if browser supports geolocation api
+  if(navigator.geolocation) {
+    // method to return user's position - if successful then onSuccess will call
+    navigator.geolocation.getCurrentPosition(onSuccess, onError)
+  }else {
+    alert("Your browser does nto support geolocation api")
+  }
 })
 
 // ************** FUNCTIONS **************
+const onError = function(error) {
+  infoTxt.innerText = error.message;
+  infoTxt.classList.add("error");
+}
+
+const onSuccess = function(position) {
+  // if user allows then get lat and long of the user device
+  // console.log(position)
+  const { latitude, longitude } = position.coords;
+  let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=imperial`;
+
+  // get data from geolocation endpoint
+  fetchData(api)
+    .then(data => weatherDetails(data))
+}
+
 const weatherDetails = function(data) {
   infoTxt.classList.replace("pending", "error");
   if(data.cod === "404") {
@@ -53,15 +81,16 @@ const fetchData = async function(api) {
   const response = await fetch(api);
   // convert JSON text file to js object
   const data = await response.json();
-
+  console.log(data);
+  // returns a promise to where function is called
   return data
 }
 
 // configures api url to request data
 const requestAPI = function(city) {
-  console.log(city)
-  let base = `https://api.openweathermap.org/data/2.5/weather`
-  let query = `?q=${city}&appid=${key}&units=imperial`;
+  console.log(city);
+  const base = `https://api.openweathermap.org/data/2.5/weather`
+  const query = `?q=${city}&appid=${key}&units=imperial`;
   let api = base + query;
 
   // resolve promise and pass data to get weather details & update UI
