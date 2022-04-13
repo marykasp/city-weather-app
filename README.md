@@ -18,7 +18,7 @@ Allows user to enter a city name and display the current weather as well as show
 
 ## Demo
 
-[weather app][./demo/simple-weather-app.gif]
+![weather app demo](./demo/simple-weather-app.gif)
 
 
 ## Tech Stack
