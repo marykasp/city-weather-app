@@ -81,9 +81,9 @@ const weatherDetails = function(data) {
 
     // change card day/night image
     if(icon.includes("d")) {
-      dayNight.src = "../img/day.svg";
+      dayNight.src = "../img/day.png";
     } else if(icon.includes("n")) {
-      dayNight.src = "../img/night.svg";
+      dayNight.src = "../img/night.png";
     }
     // change inner text of elements on card
     temperature.innerText = Math.floor(temp);
