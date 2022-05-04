@@ -1,4 +1,4 @@
-const key = config.API_KEY;
+const key = "6761f5c44d7776ef436b1d69d5ab11b2";
 const container = document.querySelector(".container");
 const inputPart = document.querySelector(".input-section");
 const infoTxt = document.querySelector(".info-text");
